@@ -17,3 +17,32 @@
 
 # print(f"Počet souhlasek: {vysledek[souhlasky]} | Počet samohlasek: {vysledek[samohlasky]}")
 
+# Ukol 2 
+
+# cisla = [1, 2, 3, 4, 5, 6, 7, 8]
+# suda = 0
+# licha = 0
+# for cislo in cisla:
+#     if cislo % 2 == 0:
+#         suda += cislo
+#     else:
+#         licha += cislo
+# vysledek = abs(suda - licha)
+# print(f"Rozdíl je: {vysledek}")
+
+# Ukol 3
+
+# vysledek = list()
+# start = 3
+# stop = 9
+# delitel = 3
+
+# if isinstance(start, int) and isinstance(stop, int) and isinstance(delitel, int):
+#     for cislo in range(start,stop+1):
+#         if cislo % int(delitel) == 0:
+#             vysledek.append(cislo)
+#     print(f"Zadaný rozsáh: <{start}, {stop}> \n", 
+#           f"Čísla dělitelná 3: {vysledek}")
+# else:
+#     print(f"Zadaný rozsáh: <{start}, {stop}>, dělitel: {delitel} \n", "Zadané vstupy musí být čísla.")    
+
