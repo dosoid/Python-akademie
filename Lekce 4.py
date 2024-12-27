@@ -46,3 +46,8 @@
 # else:
 #     print(f"Zadaný rozsáh: <{start}, {stop}>, dělitel: {delitel} \n", "Zadané vstupy musí být čísla.")    
 
+# Ukol 4
+
+seznam_slov = ["jablko", "pomeranč", "banán", "kiwi", "hruška"]
+delky_slov = {slovo: len(slovo) for slovo in seznam_slov}
+print(delky_slov)
