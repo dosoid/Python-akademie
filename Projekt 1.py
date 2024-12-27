@@ -38,18 +38,18 @@ garpike and stingray are also present.'''
 jmeno = input("Zadej své uživatelské jméno: ")
 heslo = input("Zadej své heslo: ")
 # Seznam uživatelů
-uzivatele = {bob: "123", ann: "pass123", mike: "password123", liz: "pass123"}
+uzivatele = {"bob": "123", "ann": "pass123", "mike": "password123", "liz": "pass123"}
 # Proměnné pro práci s textem
 text_cislo = int()
-pocet_slov = int()
-pocet_slov_velke_pismeno = int()
-pocet_slov_vse_velke = int()
-pocet_slov_vse_male = int()
-pocet_cisel = int()
-soucet_cisel = int()
+pocet_slov = 0
+pocet_slov_velke_pismeno = 0
+pocet_slov_vse_velke = 0
+pocet_slov_vse_male = 0
+pocet_cisel = 0
+soucet_cisel = 0
 
 if uzivatele.get(jmeno) == heslo:
-    print(f"Vítej v aplikaci, {jmeno}!")
+    print(f"Vítej v aplikaci, {jmeno}!", "_" * 20, sep="\n")
 else:
     print("Zadané jméno nebo heslo není správné. Ukončuji program.")
     exit()
@@ -57,7 +57,7 @@ else:
 vybrany_text_cislo = input("Vyber si text zadáním čísla 1 - 3: ")
 if vybrany_text_cislo.isnumeric():
     if 0 < int(vybrany_text_cislo) < 4:
-        print(f"Vybral jsi text číslo {vybrany_text_cislo}.")
+        print(f"Vybral jsi text číslo {vybrany_text_cislo}.", "_" * 20, sep="\n")
         text_cislo = int(vybrany_text_cislo) - 1
     else:
         print("Zadal jsi číslo mimo rozsah 1 - 3. Ukončuji program.")
@@ -66,6 +66,28 @@ else:
     print("Nezadal jsi číslo v rozmezi 1 - 3. Ukončuji program.")
     exit()
 
+for slovo in TEXTS[text_cislo].split():
+    slovo = slovo.strip(",.;")
+    pocet_slov += 1
+    if slovo.istitle():
+        pocet_slov_velke_pismeno += 1
+    if slovo.isupper():
+        pocet_slov_vse_velke += 1
+    if slovo.islower():
+        pocet_slov_vse_male += 1
+    if slovo.isnumeric():
+        pocet_cisel += 1
+        soucet_cisel += int(slovo)
+    #print(slovo)
+print(f"Počet slov v textu: {pocet_slov}",
+      f"Počet slov začínajících velkým písmenem: {pocet_slov_velke_pismeno}",
+      f"Počet slov psaných velkými písmeny: {pocet_slov_vse_velke}",
+      f"Počet slov psaných malými písmeny: {pocet_slov_vse_male}",
+      f"Počet čísel v textu: {pocet_cisel}",
+      f"Součet všech čísel: {soucet_cisel}",
+      "_" * 20,
+      sep="\n"
+      )
 
 
 
