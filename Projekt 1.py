@@ -4,9 +4,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Evžen Oskin
 email: evzen.osk@gmail.com
 """
-'''
-author =
-'''
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -34,11 +32,12 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
+
+# Seznam uživatelů
+uzivatele = {"bob": "123", "ann": "pass123", "mike": "password123", "liz": "pass123"}
 # Uživatel zadá své jméno a heslo
 jmeno = input("Zadej své uživatelské jméno: ")
 heslo = input("Zadej své heslo: ")
-# Seznam uživatelů
-uzivatele = {"bob": "123", "ann": "pass123", "mike": "password123", "liz": "pass123"}
 # Proměnné pro práci s textem
 text_cislo = int()
 pocet_slov = 0
@@ -47,18 +46,18 @@ pocet_slov_vse_velke = 0
 pocet_slov_vse_male = 0
 pocet_cisel = 0
 soucet_cisel = 0
-tabulka_delka_slov = dict()
-
+slovnik_delka_slov = dict()
+# Ověření uživatele
 if uzivatele.get(jmeno) == heslo:
-    print(f"Vítej v aplikaci, {jmeno}!", "_" * 20, sep="\n")
+    print(f"Vítej v aplikaci, {jmeno}!", "_" * 30, sep="\n")
 else:
     print("Zadané jméno nebo heslo není správné. Ukončuji program.")
     exit()
-
+# Uživatel vybere text
 vybrany_text_cislo = input("Vyber si text zadáním čísla 1 - 3: ")
-if vybrany_text_cislo.isnumeric():
+if vybrany_text_cislo.isdecimal():
     if 0 < int(vybrany_text_cislo) < 4:
-        print(f"Vybral jsi text číslo {vybrany_text_cislo}.", "_" * 20, sep="\n")
+        print(f"Vybral jsi text číslo {vybrany_text_cislo}.", "_" * 30, sep="\n")
         text_cislo = int(vybrany_text_cislo) - 1
     else:
         print("Zadal jsi číslo mimo rozsah 1 - 3. Ukončuji program.")
@@ -66,26 +65,27 @@ if vybrany_text_cislo.isnumeric():
 else:
     print("Nezadal jsi číslo v rozmezi 1 - 3. Ukončuji program.")
     exit()
-
+# Projde se text a provede výpočty
 for slovo in TEXTS[text_cislo].split():
     slovo = slovo.strip(",.;")
     pocet_slov += 1
-    # Délka slova a přiřazaní do tabulky podle délky
+    # Délka slova a přiřazení do slovníku podle délky
     delka_slova = len(slovo)
-    tabulka_delka_slov[delka_slova] = tabulka_delka_slov.get(delka_slova, 0) + 1
+    slovnik_delka_slov[delka_slova] = slovnik_delka_slov.get(delka_slova, 0) + 1
     # Podmínky pro výpočty
-    if slovo.istitle():
-        pocet_slov_velke_pismeno += 1
-    if slovo.isupper():
-        pocet_slov_vse_velke += 1
-    if slovo.islower():
-        pocet_slov_vse_male += 1
     if slovo.isnumeric():
         pocet_cisel += 1
         soucet_cisel += int(slovo)
+    elif slovo.isalpha():
+        if slovo.istitle():
+            pocet_slov_velke_pismeno += 1
+        if slovo.isupper():
+            pocet_slov_vse_velke += 1
+        if slovo.islower():
+            pocet_slov_vse_male += 1
     #print(slovo)
 
-    # Vypíše jednotlivé proměnné
+# Vypíše jednotlivé proměnné
 print(f"Počet slov v textu: {pocet_slov}",
       f"Počet slov začínajících velkým písmenem: {pocet_slov_velke_pismeno}",
       f"Počet slov psaných velkými písmeny: {pocet_slov_vse_velke}",
@@ -96,18 +96,18 @@ print(f"Počet slov v textu: {pocet_slov}",
       sep="\n"
       )
 
-# Vypíše tabulku podle délky slov
+# Připraví hlavičku tabulky
 print(
     "{:>5}".format("Délka"),
     "|{:^15}|".format("Opakování"),
     "{:<5}".format("Znaky")
 )
-
-serazena_tabulka = dict(sorted(tabulka_delka_slov.items()))
-for i in serazena_tabulka.keys():
+# Seřadí tabulku a vypíše
+serazena_tabulka = dict(sorted(slovnik_delka_slov.items()))
+for key in serazena_tabulka.keys():
     print(
-        "{:>5}".format(i),
-        "|{:^15}|".format(tabulka_delka_slov[i] * "*"),
-        "{:<5}".format(tabulka_delka_slov[i])
+        "{:>5}".format(key),
+        "|{:<15}|".format(slovnik_delka_slov[key] * "*"),
+        "{:<5}".format(slovnik_delka_slov[key])
     )
    
