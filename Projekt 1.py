@@ -57,7 +57,7 @@ else:
 vybrany_text_cislo = input("Vyber si text zadáním čísla 1 - 3: ")
 if vybrany_text_cislo.isdecimal():
     if 0 < int(vybrany_text_cislo) < 4:
-        print(f"Vybral jsi text číslo {vybrany_text_cislo}.", "_" * 30, sep="\n")
+        print(f"Vybral jsi text číslo {vybrany_text_cislo}", "_" * 30, sep="\n")
         text_cislo = int(vybrany_text_cislo) - 1
     else:
         print("Zadal jsi číslo mimo rozsah 1 - 3. Ukončuji program.")
@@ -96,18 +96,20 @@ print(f"Počet slov v textu: {pocet_slov}",
       sep="\n"
       )
 
+# Maximální délka slova v slovníku
+max_delka = max(slovnik_delka_slov.values())
 # Připraví hlavičku tabulky
 print(
     "{:>5}".format("Délka"),
-    "|{:^15}|".format("Opakování"),
-    "{:<5}".format("Znaky")
+    "|{0:^{1}}|".format("Opakování", max_delka),
+    "{:<5}".format("Počet")
 )
 # Seřadí tabulku a vypíše
 serazena_tabulka = dict(sorted(slovnik_delka_slov.items()))
 for key in serazena_tabulka.keys():
     print(
         "{:>5}".format(key),
-        "|{:<15}|".format(slovnik_delka_slov[key] * "*"),
+        "|{0:<{1}}|".format(slovnik_delka_slov[key] * "*", max_delka),
         "{:<5}".format(slovnik_delka_slov[key])
     )
    
