@@ -47,6 +47,7 @@ pocet_slov_vse_velke = 0
 pocet_slov_vse_male = 0
 pocet_cisel = 0
 soucet_cisel = 0
+tabulka_delka_slov = dict()
 
 if uzivatele.get(jmeno) == heslo:
     print(f"Vítej v aplikaci, {jmeno}!", "_" * 20, sep="\n")
@@ -69,6 +70,10 @@ else:
 for slovo in TEXTS[text_cislo].split():
     slovo = slovo.strip(",.;")
     pocet_slov += 1
+    # Délka slova a přiřazaní do tabulky podle délky
+    delka_slova = len(slovo)
+    tabulka_delka_slov[delka_slova] = tabulka_delka_slov.get(delka_slova, 0) + 1
+    # Podmínky pro výpočty
     if slovo.istitle():
         pocet_slov_velke_pismeno += 1
     if slovo.isupper():
@@ -79,6 +84,8 @@ for slovo in TEXTS[text_cislo].split():
         pocet_cisel += 1
         soucet_cisel += int(slovo)
     #print(slovo)
+
+    # Vypíše jednotlivé proměnné
 print(f"Počet slov v textu: {pocet_slov}",
       f"Počet slov začínajících velkým písmenem: {pocet_slov_velke_pismeno}",
       f"Počet slov psaných velkými písmeny: {pocet_slov_vse_velke}",
@@ -89,5 +96,18 @@ print(f"Počet slov v textu: {pocet_slov}",
       sep="\n"
       )
 
+# Vypíše tabulku podle délky slov
+print(
+    "{:>5}".format("Délka"),
+    "|{:^15}|".format("Opakování"),
+    "{:<5}".format("Znaky")
+)
 
-
+serazena_tabulka = dict(sorted(tabulka_delka_slov.items()))
+for i in serazena_tabulka.keys():
+    print(
+        "{:>5}".format(i),
+        "|{:^15}|".format(tabulka_delka_slov[i] * "*"),
+        "{:<5}".format(tabulka_delka_slov[i])
+    )
+   
