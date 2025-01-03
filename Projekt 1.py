@@ -64,6 +64,7 @@ else:
 # Uživatel vybere text
 
 vybrany_text_cislo = input(f"Vyber si text zadáním čísla 1 - {pocet_text}: ")
+
 if vybrany_text_cislo.isdecimal():
     if 0 < int(vybrany_text_cislo) < (pocet_text + 1):
         print(f"Vybral jsi text číslo {vybrany_text_cislo}", "_" * 30, sep="\n")
@@ -123,6 +124,7 @@ print(
 # Seřadí tabulku a vypíše
 
 serazena_tabulka = dict(sorted(slovnik_delka_slov.items()))
+
 for key in serazena_tabulka.keys():
     print(
         "{:>5}".format(key),
